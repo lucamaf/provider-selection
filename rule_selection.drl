@@ -1,0 +1,18 @@
+package com.myspace.provider_selection;
+import com.myspace.provider_selection.Server
+
+
+
+rule "lowest price"
+no-loop true
+when
+    $s1: Server() and
+    $s2: Server(monthlyPrice < $s1.monthlyPrice)
+then
+    modify ($s2) {
+        setSelected(true);
+    }
+    modify ($s1) {
+        setSelected(false);
+    }
+end
